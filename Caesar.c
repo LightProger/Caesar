@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 /*
  * Написать программу, шифрующую текст с помощью шифра Цезаря.
@@ -13,50 +14,56 @@
 int main()
 {
     // Переменные
-    char word; // строка шифрования
-    int key; // ключ шифрования
-    int i; // счетчик
-    int c; // Для преобразования char в int и обратно
+    int word;		// строка шифрования
+    int key;		// ключ шифрования
+    int i;			// счетчик
+    int c;			// Для просто так
 
+    int abc = 26;	// длина латинского алфавита
+    int gogo = 1;	// для цикла
+    int flag = 1;	// для цикла
 
     // Ввод ключа
-    printf("Enter key: ");
-    printf("\n");
-    scanf("%i", &key);
-
-    // Обработка ошибок
-    if (key < 1)
+    printf ("Please, E");
+    while (gogo == 1)
     {
-        printf("Error, invalid key! Enter key: ");
-        printf("\n");
+        printf("nter key:");
         scanf("%i", &key);
-    }
-
-    else
-    {
-        printf("Enter string for encrypt: ");
         printf("\n");
 
-        // Ввод строки и прибавление к ней ключа шифрования
-        for(i = 0; i < (word = getchar()); i++)
+        if (key<1) {	printf("Error! Invalid key!\n\nPlease, Ree");	}
+        else
         {
-            if (isupper(word))
-            {
-                c = (((int)word - 65 + key) % 26) + 65;
-                printf("%c", (char) c);
-            }
-            else if (islower(word))
-            {
-                c = (((int)word - 97 + key) % 26) + 97;
-                printf("%c", (char) c);
-            }
-            else
-            {
-                printf("%c", word);
-            }
+            getchar();
+            gogo = 0;
         }
     }
 
-        printf("\n");
+    printf("Enter string for encrypt: ");
+    printf("\n");
+
+    // Ввод строки и прибавление к ней ключа шифрования
+    while (flag == 1)
+    {
+        word = getchar();
+
+        if (isupper(word))
+        {
+            c = ((word - 'A' + key) % abc) + 'A';
+            printf("%c", c);
+        }
+        else if (islower(word))
+        {
+            c = ((word - 'a' + key) % abc) + 'a';
+            printf("%c", c);
+        }
+        else {	printf("%c", word);	}
+
+        if(word == '\n')
+        {
+            flag = 0;
+        }
+    }
+    printf("\n");
     return 0;
 }
